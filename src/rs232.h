@@ -42,8 +42,9 @@ extern "C" {
 
 
 
-#if defined(__linux__) || defined(__FreeBSD__)
-
+#if _WIN32
+#include <windows.h>
+#else /* _WIN32 */
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
@@ -53,11 +54,6 @@ extern "C" {
 #include <limits.h>
 #include <sys/file.h>
 #include <errno.h>
-
-#else
-
-#include <windows.h>
-
 #endif
 
 int RS232_OpenComport(int, int, const char *);
